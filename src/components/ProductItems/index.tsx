@@ -1,66 +1,57 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import styles from './styles'
-const ProductItem = () => {
+import styles from './styles';
+
+interface ProductItemprops {
+  item: {
+    id: string;
+    title: string;
+    image: string;
+    avgRating: number;
+    rating: number;
+    price: number;
+    oldPrice?: number;
+  };
+}
+
+const ProductItem = ({item}: ProductItemProps) => {
   return (
     <View style={styles.root}>
       <Image
         style={styles.image}
         source={{
-          uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleancode.jpg',
+          uri: item.image,
         }}
       />
       <View style={styles.rightContainer}>
         <Text style={styles.title} numberOfLines={3}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          {item.title}
           {/* Ratings */}
         </Text>
         {/* Ratings */}
         <View style={styles.ratingscontainer}>
-          <FontAwesome
-            style={styles.star}
-            name="star"
-            size={18}
-            color={'#e47911'}
-          />
-          <FontAwesome
-            style={styles.star}
-            name="star"
-            size={18}
-            color={'#e47911'}
-          />
-          <FontAwesome
-            style={styles.star}
-            name="star"
-            size={18}
-            color={'#e47911'}
-          />
-          <FontAwesome
-            style={styles.star}
-            name="star-half-full"
-            size={18}
-            color={'#e47911'}
-          />
-          <FontAwesome
-            style={styles.star}
-            name="star-o"
-            size={18}
-            color={'#e47911'}
-          />
-          <Text>13,902</Text>
+          {[0, 0, 0, 0, 0].map((el, index) => (
+            <FontAwesome
+              style={styles.star}
+              name={index < Math.floor(item.avgRating) ? 'star' : 'star-o'}
+              size={18}
+              color={'#e47911'}
+              key={index}
+            />
+          ))}
+          <Text>{item.ratings}</Text>
         </View>
         <Text style={styles.price}>
           {' '}
-          from $30.59 <Text style={styles.oldPrice}>$16.91</Text>
+          from $ {item.price}{' '}
+          {item.oldPrice && (
+            <Text style={styles.oldPrice}> ${item.oldPrice}</Text>
+          )}
         </Text>
       </View>
     </View>
   );
 };
-
-
-
-
 
 export default ProductItem;

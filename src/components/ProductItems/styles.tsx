@@ -1,10 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  page: {
-    width: '100%',
-    padding: 10,
-  },
+ 
   root: {
     flexDirection: 'row',
     margin: 10,
@@ -13,6 +10,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#fff',
     width: '100%',
+    marginVertical: 5,
   },
   image: {
     flex: 2,
