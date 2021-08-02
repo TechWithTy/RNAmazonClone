@@ -2,15 +2,16 @@
 import {Picker} from '@react-native-picker/picker';
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
-import product from '../../data/product';
+import Button from '../../components/Button';
 import QuantitySelector from '../../components/QuantitySelector';
+import product from '../../data/product';
 import styles from './styles';
 
 const ProductScreen = () => {
   const [slectedOption, setslectedOption] = useState(
     product.options ? product.options[0] : null,
   );
-  
+
   const [quantity, setQuantity] = useState(1);
   console.log(slectedOption);
   return (
@@ -23,7 +24,7 @@ const ProductScreen = () => {
 
       <Picker
         selectedValue={slectedOption}
-        onValueChange={(itemValue) => setslectedOption(itemValue)}>
+        onValueChange={itemValue => setslectedOption(itemValue)}>
         {product.options.map(option => (
           <Picker.Item label={option} value={option} />
         ))}
@@ -40,8 +41,16 @@ const ProductScreen = () => {
       {/* Description */}
       <Text style={styles.description}>{product.description}</Text>
       {/* Quantity Selector */}
-      <QuantitySelector quantity={quantity} setQuantity={ setQuantity}/>
+      <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
       {/* Button */}
+      <Button
+        text={'Add To Cart'}
+        onPress={() => {
+          console.warn('Add to cart');
+        }}
+      
+      />
+   
     </View>
   );
 };
