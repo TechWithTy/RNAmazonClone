@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 import QuantitySelector from '../../components/QuantitySelector';
 import product from '../../data/product';
 import styles from './styles';
-
+import ImageCarousel from '../../components/ImageCarousel';
 const ProductScreen = () => {
   const [slectedOption, setslectedOption] = useState(
     product.options ? product.options[0] : null,
@@ -15,18 +15,18 @@ const ProductScreen = () => {
   const [quantity, setQuantity] = useState(1);
   console.log(slectedOption);
   return (
-    <View>
+    <View style={styles.root}>
       <Text style={styles.title}>{product.title} </Text>
 
       {/* Image Carousel */}
-
+      <ImageCarousel images={product.images}/>
       {/* Option Selector */}
 
       <Picker
         selectedValue={slectedOption}
         onValueChange={itemValue => setslectedOption(itemValue)}>
-        {product.options.map(option => (
-          <Picker.Item label={option} value={option} />
+        {product.options.map((option, i) => (
+          <Picker.Item key={i} label={option} value={option} />
         ))}
       </Picker>
 
@@ -48,9 +48,15 @@ const ProductScreen = () => {
         onPress={() => {
           console.warn('Add to cart');
         }}
-      
+        containerStyles={{backgroundColor: 'yellow'}}
       />
-   
+
+      <Button
+        text={'Buy Now'}
+        onPress={() => {
+          console.warn('Buy Now');
+        }}
+      />
     </View>
   );
 };

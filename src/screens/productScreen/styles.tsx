@@ -1,6 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  root: {
+    padding: 10,
+    backgroundColor: 'white',
+  },
   price: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -10,7 +14,11 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     textDecorationLine: 'line-through',
   },
-  description: {},
+  title: {},
+  description: {
+    marginVertical: 10,
+    lineHeight: 20,
+  },
 });
 
 export default styles;
